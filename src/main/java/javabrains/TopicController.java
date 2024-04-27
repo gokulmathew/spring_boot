@@ -1,28 +1,38 @@
 package javabrains;
-import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class TopicController {
-	
-	
+
 	@Autowired
 	private TopicService topicService;
-	
-	@RequestMapping("/topics")
-	public List<Topic> getAllTopics() { return topicService.getAllTopics();
+
+	@GetMapping("/topics")
+	public List<Topic> getAllTopics() {
+		return topicService.getAllTopics();
 	}
-	
-//	@RequestMapping("/topics")
-//	public List<Topic> retrieveAllCourses() {
-//		return Arrays.asList(
-//		new Topic (1, "Java Brains", "in28minutes"), new Topic(2, "Learn DevOps", "in28minutes"), new Topic(3, "Learn DevOps", "in28minutes")
-//		);
-//		}
+
+	@GetMapping("/topics/{id}")
+	public Topic getTopic(@PathVariable Integer id) {
+		return topicService.getTopic(id);
+	}
+
+	@PostMapping("/topics")
+	public void addTopic(@RequestBody Topic topic) {
+		topicService.addTopic(topic);
+	}
+
+	@PutMapping("/topics/{id}")
+	public void updateTopic(@RequestBody Topic topic, @PathVariable Integer id) {
+		topicService.updateTopic(id, topic);
+	}
+
+	@DeleteMapping("/topics/{id}")
+	public void deleteTopic(@PathVariable Integer id) {
+		topicService.deleteTopic(id);
+	}
 
 }

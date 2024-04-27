@@ -1,18 +1,18 @@
 package javabrains;
 
 public class Topic {
-	private long id;
+	private Integer id;
 	private String name;
 	private String author;
 
-	public Topic(long id, String name, String author) {
+	public Topic(Integer id, String name, String author) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.author = author;
 	}
 
-	public long getId() {
+	public Integer getId() {
 		return id;
 	}
 
